@@ -12,7 +12,7 @@ public class SafeInput {
         String retString = ""; // Set this to zero length. Loop runs until it isn't
         do
         {
-            System.out.print("\n" +prompt + ": "); // show prompt add space
+            System.out.print(prompt + ": "); // show prompt add space
             retString = pipe.nextLine();
         }while(retString.length() == 0);
 
@@ -126,6 +126,36 @@ public class SafeInput {
 
         return result;
     }
+
+    public static boolean getYNConfirm(Scanner pipe, String prompt)
+    {
+        boolean result = true;
+        String inputYN = "";
+        boolean done = false;
+
+        do
+        {
+            System.out.print(prompt +"[Y/N]: ");
+            inputYN = pipe.nextLine();
+            if(inputYN.equalsIgnoreCase("Y"))
+            {
+                done = true;
+                result = true;
+            }
+            else if(inputYN.equalsIgnoreCase("N"))
+            {
+                done = true;
+                result = false;
+            }
+            else
+            {
+                System.out.println("You must answer [Y/N]! " + inputYN);
+            }
+        }while(!done);
+
+        return result;
+    }
+
     public static String getRegExString(Scanner pipe, String prompt, String regExPattern)
     {
         String value = "";
@@ -147,4 +177,12 @@ public class SafeInput {
 
         return value;
     }
+}
+public static void prettyHeader(String msg)
+{
+    String msg = "";
+    System.out.println("**********************************************************************");
+    System.out.println("***                   message centered here.                       ***");
+    System.out.println("**********************************************************************");
+
 }
